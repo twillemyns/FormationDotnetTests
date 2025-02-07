@@ -13,7 +13,8 @@ public class RechercheVilleTests
     {
         _villes =
         [
-            "Paris", "Lyon", "Marseille", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille"
+            "Paris", "Budapest", "Skopje", "Rotterdam", "Valence", "Vancouver", "Amsterdam", "Vienne", "Sydney",
+            "New York", "Londres", "Bangkok", "Hong Kong", "Dubaï", "Rome", "Istanbul"
         ];
 
         _recherche = new RechercheVille(_villes);
@@ -43,6 +44,17 @@ public class RechercheVilleTests
     public void Rechercher_NotCaseSensible_ReturnListNormally(string mot)
     {
         var expected = _villes.Where(v => v.StartsWith(mot, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+        var result = _recherche.Rechercher(mot);
+
+        CollectionAssert.AreEquivalent(expected, result);
+    }
+
+    [TestMethod]
+    [DataRow("ape")]
+    public void Rechercher_MotFaisantPartieDeLaVille_ReturnShortList(string mot)
+    {
+        var expected = _villes.Where(v => v.Contains(mot, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
         var result = _recherche.Rechercher(mot);
 
