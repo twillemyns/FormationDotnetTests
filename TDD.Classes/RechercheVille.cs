@@ -7,7 +7,7 @@ public class RechercheVille(List<string> villes)
         return mot.Length switch
         {
             < 2 => throw new NotFoundException(),
-            >= 2 => villes.Where(v => v.StartsWith(mot)).ToList()
+            >= 2 => villes.Where(v => v.StartsWith(mot, StringComparison.InvariantCultureIgnoreCase)).ToList()
         };
     }
 }
