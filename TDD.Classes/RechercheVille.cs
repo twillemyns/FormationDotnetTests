@@ -4,11 +4,10 @@ public class RechercheVille(List<string> villes)
 {
     public List<string> Rechercher(string mot)
     {
-        if (mot.Length < 2) throw new NotFoundException();
-
-        if (mot.Length >= 2)
-            return villes.Where(v => v.StartsWith(mot)).ToList();
-
-        throw new NotImplementedException();
+        return mot.Length switch
+        {
+            < 2 => throw new NotFoundException(),
+            >= 2 => villes.Where(v => v.StartsWith(mot)).ToList()
+        };
     }
 }
