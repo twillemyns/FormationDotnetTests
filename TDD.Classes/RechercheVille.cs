@@ -6,6 +6,9 @@ public class RechercheVille(List<string> villes)
     {
         if (mot.Length < 2) throw new NotFoundException();
 
+        if (mot.Length >= 2)
+            return villes.Where(v => v.StartsWith(mot)).ToList();
+
         throw new NotImplementedException();
     }
 }
