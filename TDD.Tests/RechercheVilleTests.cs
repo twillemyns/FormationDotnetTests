@@ -24,4 +24,15 @@ public class RechercheVilleTests
     {
         Assert.ThrowsException<NotFoundException>(() => _recherche.Rechercher("P"));
     }
+
+    [TestMethod]
+    [DataRow("Pa")]
+    public void Rechercher_Mot2CaractèresOuPlus_ReturnListWithCitiesStartsWithParameter(string mot)
+    {
+        var expected = _villes.Where(v => v.StartsWith(mot)).ToList();
+
+        var result = _recherche.Rechercher(mot);
+
+        CollectionAssert.AreEquivalent(expected, result);
+    }
 }
