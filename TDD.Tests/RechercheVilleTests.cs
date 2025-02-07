@@ -35,4 +35,17 @@ public class RechercheVilleTests
 
         CollectionAssert.AreEquivalent(expected, result);
     }
+
+    [TestMethod]
+    [DataRow("PA")]
+    [DataRow("pA")]
+    [DataRow("pa")]
+    public void Rechercher_NotCaseSensible_ReturnListNormally(string mot)
+    {
+        var expected = _villes.Where(v => v.StartsWith(mot, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+        var result = _recherche.Rechercher(mot);
+
+        CollectionAssert.AreEquivalent(expected, result);
+    }
 }
