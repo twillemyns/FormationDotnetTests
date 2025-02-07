@@ -1,9 +1,7 @@
 ﻿namespace TDD.Classes;
 
-public class RechercheVille
+public class RechercheVille(List<string> villes)
 {
-    private List<String> _villes;
-
     public List<String> Rechercher(String mot)
     {
         throw new NotImplementedException();
