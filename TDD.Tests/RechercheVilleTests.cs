@@ -60,4 +60,15 @@ public class RechercheVilleTests
 
         CollectionAssert.AreEquivalent(expected, result);
     }
+
+    [TestMethod]
+    [DataRow("*")]
+    public void Rechercher_MotEgalEtoile_ReturnAllCities(string mot)
+    {
+        var expected = _villes;
+
+        var result = _recherche.Rechercher(mot);
+
+        CollectionAssert.AreEquivalent(expected, result);
+    }
 }
